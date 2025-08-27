@@ -1,0 +1,63 @@
+{
+  "function": "multi_call_nested",
+  "params": [],
+  "vararg": true,
+  "header": { "numparams": 0, "is_vararg": 1, "maxstack": 8 },
+  "consts": [1, 3, 1, 2, 3, "print"],
+  "blocks": [
+    {
+      "name": "entry",
+      "instrs": [
+        { "op": "const", "dst": "%i.1", "operands": [ { "kind": "const", "idx": 0 } ] },
+        { "op": "const", "dst": "%i_lim.1", "operands": [ { "kind": "const", "idx": 1 } ] },
+        { "op": "const", "dst": "%i_step.1", "operands": [ { "kind": "const", "idx": 2 } ] },
+        { "op": "forprep", "operands": [
+            { "kind": "reg", "name": "%i.1" },
+            { "kind": "reg", "name": "%i_lim.1" },
+            { "kind": "reg", "name": "%i_step.1" }
+          ], "meta": { "target": "outer_loop" } }
+      ]
+    },
+    {
+      "name": "outer_body",
+      "instrs": [
+        { "op": "const", "dst": "%j.1", "operands": [ { "kind": "const", "idx": 3 } ] },
+        { "op": "const", "dst": "%j_lim.1", "operands": [ { "kind": "const", "idx": 4 } ] },
+        { "op": "const", "dst": "%j_step.1", "operands": [ { "kind": "const", "idx": 2 } ] },
+        { "op": "forprep", "operands": [
+            { "kind": "reg", "name": "%j.1" },
+            { "kind": "reg", "name": "%j_lim.1" },
+            { "kind": "reg", "name": "%j_step.1" }
+          ], "meta": { "target": "inner_loop" } }
+      ]
+    },
+    {
+      "name": "inner_body",
+      "instrs": [
+        { "op": "gettabup", "dst": "%f.1", "operands": [
+            { "kind": "up", "idx": 0 },
+            { "kind": "const", "idx": 5 }
+          ] },
+        { "op": "call", "dst": "%r.1", "operands": [
+            { "kind": "reg", "name": "%f.1" },
+            { "kind": "reg", "name": "%i.2" },
+            { "kind": "reg", "name": "%j.2" }
+          ], "meta": { "nret": 0 } }
+      ]
+    },
+    {
+      "name": "inner_loop",
+      "instrs": [
+        { "op": "forloop", "operands": [ { "kind": "reg", "name": "%j.2" } ], "meta": { "body": "inner_body" } }
+      ]
+    },
+    {
+      "name": "outer_loop",
+      "instrs": [
+        { "op": "forloop", "operands": [ { "kind": "reg", "name": "%i.2" } ], "meta": { "body": "outer_body" } },
+        { "op": "ret", "operands": [] }
+      ]
+    }
+  ],
+  "upvalues": [ { "name": "U0", "info": "L0 R0" } ]
+}

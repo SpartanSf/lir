@@ -1,0 +1,272 @@
+{
+  "function": "demo_optimizations",
+  "header": {
+    "numparams": 0,
+    "is_vararg": 1,
+    "maxstack": 8
+  },
+  "upvalues": [],
+  "consts": [
+    2,
+    3,
+    0,
+    1,
+    42,
+    "unused",
+    "also_unused"
+  ],
+  "blocks": [
+    {
+      "name": "B0",
+      "instrs": [
+        {
+          "op": "const",
+          "dst": "r2",
+          "operands": [
+            {
+              "kind": "const",
+              "idx": 0
+            }
+          ]
+        },
+        {
+          "op": "const",
+          "dst": "r3",
+          "operands": [
+            {
+              "kind": "const",
+              "idx": 1
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "dst": "r4",
+          "operands": [
+            {
+              "kind": "const",
+              "idx": 0
+            },
+            {
+              "kind": "const",
+              "idx": 1
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "dst": "r5",
+          "operands": [
+            {
+              "kind": "reg",
+              "name": "r4"
+            },
+            {
+              "kind": "const",
+              "idx": 2
+            }
+          ]
+        },
+        {
+          "op": "mul",
+          "dst": "r6",
+          "operands": [
+            {
+              "kind": "reg",
+              "name": "r5"
+            },
+            {
+              "kind": "const",
+              "idx": 3
+            }
+          ]
+        },
+        {
+          "op": "mul",
+          "dst": "r7",
+          "operands": [
+            {
+              "kind": "reg",
+              "name": "r6"
+            },
+            {
+              "kind": "const",
+              "idx": 2
+            }
+          ]
+        },
+        {
+          "op": "move",
+          "dst": "r8",
+          "operands": [
+            {
+              "kind": "reg",
+              "name": "r6"
+            }
+          ]
+        },
+        {
+          "op": "move",
+          "dst": "r9",
+          "operands": [
+            {
+              "kind": "reg",
+              "name": "r8"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "dst": "r10",
+          "operands": [
+            {
+              "kind": "reg",
+              "name": "r9"
+            },
+            {
+              "kind": "reg",
+              "name": "r2"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "dst": "r11",
+          "operands": [
+            {
+              "kind": "reg",
+              "name": "r9"
+            },
+            {
+              "kind": "reg",
+              "name": "r2"
+            }
+          ]
+        },
+        {
+          "op": "const",
+          "dst": "rtmp",
+          "operands": [
+            {
+              "kind": "const",
+              "idx": 3
+            }
+          ]
+        },
+        {
+          "op": "move",
+          "dst": "rdst",
+          "operands": [
+            {
+              "kind": "reg",
+              "name": "rtmp"
+            }
+          ]
+        },
+        {
+          "op": "jmp",
+          "operands": [],
+          "meta": {
+            "target": "B1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "B1",
+      "instrs": [
+        {
+          "op": "sub",
+          "dst": "r12",
+          "operands": [
+            {
+              "kind": "reg",
+              "name": "r6"
+            },
+            {
+              "kind": "const",
+              "idx": 2
+            }
+          ]
+        },
+        {
+          "op": "div",
+          "dst": "r13",
+          "operands": [
+            {
+              "kind": "reg",
+              "name": "r6"
+            },
+            {
+              "kind": "const",
+              "idx": 3
+            }
+          ]
+        },
+        {
+          "op": "sub",
+          "dst": "r14",
+          "operands": [
+            {
+              "kind": "const",
+              "idx": 2
+            },
+            {
+              "kind": "reg",
+              "name": "r6"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "dst": "rdead",
+          "operands": [
+            {
+              "kind": "reg",
+              "name": "r12"
+            },
+            {
+              "kind": "reg",
+              "name": "r13"
+            }
+          ]
+        },
+        {
+          "op": "jmp",
+          "operands": [],
+          "meta": {
+            "target": "B2"
+          }
+        }
+      ]
+    },
+    {
+      "name": "B2",
+      "instrs": [
+        {
+          "op": "add",
+          "dst": "rout",
+          "operands": [
+            {
+              "kind": "reg",
+              "name": "r10"
+            },
+            {
+              "kind": "reg",
+              "name": "r3"
+            }
+          ]
+        },
+        {
+          "op": "return",
+          "operands": [
+            {
+              "kind": "reg",
+              "name": "rout"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "function": "dce_test",
+  "params": [],
+  "vararg": false,
+  "header": { "numparams": 0, "is_vararg": 0, "maxstack": 4 },
+  "consts": [42],
+  "blocks": [
+    {
+      "name": "entry",
+      "instrs": [
+        { "op": "const", "dst": "%x.1", "operands": [ { "kind": "const", "idx": 0 } ] },
+        { "op": "add", "dst": "%dead.1", "operands": [
+            { "kind": "reg", "name": "%x.1" },
+            { "kind": "reg", "name": "%x.1" }
+        ] },
+        { "op": "ret", "operands": [ { "kind": "reg", "name": "%x.1" } ] }
+      ]
+    }
+  ]
+}

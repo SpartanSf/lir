@@ -1,0 +1,25 @@
+{
+  "function": "arith",
+  "params": [],
+  "vararg": false,
+  "header": { "numparams": 0, "is_vararg": 0, "maxstack": 5 },
+  "consts": [5, 7],
+  "blocks": [
+    {
+      "name": "entry",
+      "instrs": [
+        { "op": "const", "dst": "%a.1", "operands": [ { "kind": "const", "idx": 0 } ] },
+        { "op": "const", "dst": "%b.1", "operands": [ { "kind": "const", "idx": 1 } ] },
+        { "op": "add", "dst": "%c.1", "operands": [
+            { "kind": "reg", "name": "%a.1" },
+            { "kind": "reg", "name": "%b.1" }
+        ] },
+        { "op": "mul", "dst": "%d.1", "operands": [
+            { "kind": "reg", "name": "%c.1" },
+            { "kind": "const", "idx": 1 }
+        ] },
+        { "op": "ret", "operands": [ { "kind": "reg", "name": "%d.1" } ] }
+      ]
+    }
+  ]
+}
